@@ -6,4 +6,4 @@ loadstring(game:HttpGet("https://github.com/grest0n/Script/blob/main/TheScript4"
 wait(1)
 loadstring(game:HttpGet("https://github.com/grest0n/Script/blob/main/TheScript5"))()
 wait(1)
-loadstring(game:HttpGet(""))()
+loadstring(game:HttpGet("https://github.com/grest0n/Script/blob/main/TheScript6"))()
