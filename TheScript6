@@ -1,0 +1,47 @@
+local OriginalName1 = "Death Counter"
+local OriginalName2 = "Table Flip"
+local OriginalName3 = "Serious Punch"
+local OriginalName4 = "Omni Directional Punch"
+
+local UltMovesetName1 = "Vital Strike MAX"
+local UltMovesetName2 = "Dragon's Fear"
+local UltMovesetName3 = "Mutilation"
+local UltMovesetName4 = "Agelessness"
+
+-- don't change
+local player = game.Players.LocalPlayer
+local playerGui = player.PlayerGui
+local character = player.Character or player.CharacterAdded:Wait() -- Get character
+
+local toolNamesToReplace = {
+    ["1"] = {original = OriginalName1, new = UltMovesetName1},
+    ["2"] = {original = OriginalName2, new = UltMovesetName2},
+    ["3"] = {original = OriginalName3, new = UltMovesetName3},
+    ["4"] = {original = OriginalName4, new = UltMovesetName4}
+}
+
+local function checkAndReplaceToolName()
+    while character.Humanoid.Health > 0 do
+        local hotbar = playerGui:FindFirstChild("Hotbar")
+        if hotbar then
+            local backpack = hotbar:FindFirstChild("Backpack")
+            if backpack then
+                local hotbarFrame = backpack:FindFirstChild("Hotbar")
+                if hotbarFrame then
+                    for buttonName, toolData in pairs(toolNamesToReplace) do
+                        local baseButton = hotbarFrame:FindFirstChild(buttonName) and hotbarFrame[buttonName]:FindFirstChild("Base")
+                        if baseButton then
+                            local toolName = baseButton:FindFirstChild("ToolName")
+                            if toolName and toolName.Text == toolData.original then
+                                toolName.Text = toolData.new
+                            end
+                        end
+                    end
+                end
+            end
+        end
+        wait()
+    end
+end
+
+checkAndReplaceToolName()
